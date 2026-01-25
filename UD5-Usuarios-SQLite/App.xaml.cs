@@ -4,10 +4,15 @@ namespace UD5_Usuarios_SQLite
 {
     public partial class App : Application
     {
-        public App(MainPage mainPage)
+        public App()
         {
             InitializeComponent();
-            MainPage = mainPage;
+        }
+
+        protected override Window CreateWindow(IActivationState? activationState)
+        {
+            // Simplemente crear el Shell, la SplashPage manejará la navegación
+            return new Window(new AppShell());
         }
     }
 }

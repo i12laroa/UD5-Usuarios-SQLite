@@ -40,8 +40,6 @@ namespace UD5_Usuarios_SQLite
             // de dependencias en sus constructores.
             builder.Services.AddTransient<MainPage>();
 
-            // Registrar App para inyección de dependencias
-            builder.Services.AddSingleton<App>();
 
 #if DEBUG
             builder.Logging.AddDebug();
