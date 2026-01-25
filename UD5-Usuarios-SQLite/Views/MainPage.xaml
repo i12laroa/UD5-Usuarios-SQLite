@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:UD5_Usuarios_SQLite.ViewModels"
+             xmlns:models="clr-namespace:UD5_Usuarios_SQLite.Models"
+             x:Class="UD5_Usuarios_SQLite.Views.MainPage"
+             x:DataType="viewmodels:MainViewModel">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="10" Spacing="10">
+
+            <!-- Cabecera con Switch -->
+            <HorizontalStackLayout Spacing="10">
+                <Label Text="Trabajando con SQLite. Activar: " 
+                       VerticalOptions="Center"/>
+                <Switch IsToggled="{Binding BbddHabilitada}" />
+            </HorizontalStackLayout>
+
+            <!-- Panel de BBDD -->
+            <VerticalStackLayout IsEnabled="{Binding BbddHabilitada}" 
+                                 Spacing="10"
+                                 Padding="10">
+                
+                <!-- Trigger para cambiar color de fondo -->
+                <VerticalStackLayout.Triggers>
+                    <DataTrigger TargetType="VerticalStackLayout" 
+                                 Binding="{Binding BbddHabilitada}" 
+                                 Value="True">
+                        <Setter Property="BackgroundColor" Value="LightCyan"/>
+                    </DataTrigger>
+                </VerticalStackLayout.Triggers>
+
+                <!-- Campos de entrada -->
+                <Entry Placeholder="Introducir nombre de usuario" 
+                       Text="{Binding Nombre}" />
+                <Entry Placeholder="Introducir Email" 
+                       Text="{Binding Email}" />
+                <Entry Placeholder="Introducir Edad" 
+                       Text="{Binding Edad}"
+                       Keyboard="Numeric"/>
+                <Entry Placeholder="Introducir Ciudad" 
+                       Text="{Binding Ciudad}" />
+
+                <!-- Botón Añadir Usuario con Border y GestureRecognizer -->
+                <Border Stroke="#512BD4"
+                        StrokeThickness="2"
+                        StrokeShape="RoundRectangle 10"
+                        BackgroundColor="#512BD4"
+                        Padding="15,10"
+                        HorizontalOptions="Fill">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding AnadirUsuarioCommand}" />
+                    </Border.GestureRecognizers>
+
+                    <HorizontalStackLayout Spacing="15" HorizontalOptions="Center">
+
+                        <Image Source="usuario1.png" WidthRequest="20" HeightRequest="20"/>
+
+                        <Label Text="Añadir Usuario" 
+                           TextColor="White"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"/>
+                    </HorizontalStackLayout>
+                </Border>
+
+                <!-- CollectionView en lugar de ListView -->
+                <CollectionView ItemsSource="{Binding Usuarios}"
+                                SelectionMode="Single"
+                                SelectedItem="{Binding UsuarioSeleccionado}"
+                                HeightRequest="200">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:Usuario">
+                            <Border Stroke="LightGray"
+                                    StrokeThickness="1"
+                                    StrokeShape="RoundRectangle 5"
+                                    BackgroundColor="White"
+                                    Margin="0,2"
+                                    Padding="10">
+                                <Grid ColumnDefinitions="*,*,Auto,*">
+                                    <Label Text="{Binding Nombre}" 
+                                           Grid.Column="0"
+                                           FontAttributes="Bold"/>
+                                    <Label Text="{Binding Email}" 
+                                           Grid.Column="1"
+                                           TextColor="Gray"/>
+                                    <Label Text="{Binding Edad, StringFormat='{0} años'}" 
+                                           Grid.Column="2"
+                                           TextColor="DarkGray"
+                                           Margin="10,0"/>
+                                    <Label Text="{Binding Ciudad}" 
+                                           Grid.Column="3"
+                                           TextColor="DimGray"/>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <CollectionView.EmptyView>
+                        <VerticalStackLayout VerticalOptions="Center" 
+                                            HorizontalOptions="Center"
+                                            Padding="20">
+                            <Label Text="No hay usuarios registrados" 
+                                   TextColor="Gray"
+                                   HorizontalOptions="Center"/>
+                        </VerticalStackLayout>
+                    </CollectionView.EmptyView>
+                </CollectionView>
+
+                <!-- Botón Borrar Usuario con Border y GestureRecognizer -->
+                <Border Stroke="Gray"
+                        StrokeThickness="2"
+                        StrokeShape="RoundRectangle 10"
+                        BackgroundColor="Gray"
+                        Padding="15,10"
+                        Opacity="0.5"
+                        HorizontalOptions="Fill">
+                    
+                    <!-- Triggers para cambiar apariencia cuando hay usuario seleccionado -->
+                    <Border.Triggers>
+                        <DataTrigger TargetType="Border" 
+                                     Binding="{Binding PuedeBorrar}" 
+                                     Value="True">
+                            <Setter Property="Stroke" Value="#C62828"/>
+                            <Setter Property="BackgroundColor" Value="#C62828"/>
+                            <Setter Property="Opacity" Value="1"/>
+                        </DataTrigger>
+                    </Border.Triggers>
+                    
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding BorrarUsuarioCommand}" />
+                    </Border.GestureRecognizers>
+
+                    <HorizontalStackLayout Spacing="15" HorizontalOptions="Center">
+
+                        <Image Source="usuario2.png" WidthRequest="20" HeightRequest="20"/>
+
+                        <Label Text="Borrar Usuario Seleccionado" 
+                           TextColor="White"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"/>
+                    </HorizontalStackLayout>
+                </Border>
+            </VerticalStackLayout>
+
+            <!-- Botón Salir con Border y GestureRecognizer -->
+            <Border Stroke="#C62828"
+                    StrokeThickness="2"
+                    StrokeShape="RoundRectangle 10"
+                    BackgroundColor="#C62828"
+                    Padding="15,10"
+                    HorizontalOptions="Fill"
+                    Margin="0,10,0,0">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SalirCommand}" />
+                </Border.GestureRecognizers>
+
+                <HorizontalStackLayout Spacing="15" HorizontalOptions="Center">
+
+                    <Image Source="salida.png" WidthRequest="20" HeightRequest="20"/>
+
+                    <Label Text="Salir Aplicación" 
+                     TextColor="White"
+                     FontAttributes="Bold"
+                     HorizontalOptions="Center"/>
+
+                </HorizontalStackLayout>
+               
+            </Border>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

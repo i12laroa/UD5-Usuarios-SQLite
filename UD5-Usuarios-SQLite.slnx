@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="UD5-Usuarios-SQLite/UD5-Usuarios-SQLite.csproj">
+    <Deploy />
+  </Project>
+</Solution>

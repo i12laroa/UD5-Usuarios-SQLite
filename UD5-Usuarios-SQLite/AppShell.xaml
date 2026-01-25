@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="UD5_Usuarios_SQLite.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:UD5_Usuarios_SQLite.Views"
+    Shell.FlyoutBehavior="Disabled"
+    Title="UD5_Usuarios_SQLite">
+
+    <ShellContent
+        Title="Usuarios de una base de datos SQLite"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />
+
+</Shell>
