@@ -14,7 +14,6 @@ namespace UD5_Usuarios_SQLite.ViewModels
     {
         private readonly IUsuarioServicio _usuarioServicio;
 
-        #region Propiedades de Binding
 
         [ObservableProperty]
         private string _nombre = string.Empty;
@@ -39,7 +38,7 @@ namespace UD5_Usuarios_SQLite.ViewModels
         public bool PuedeBorrar => UsuarioSeleccionado != null;
 
         [ObservableProperty]
-        private ObservableCollection<Usuario> _usuarios =new();
+        private ObservableCollection<Usuario> _usuarios = new();
 
 
         public MainViewModel(IUsuarioServicio usuarioServicio)
