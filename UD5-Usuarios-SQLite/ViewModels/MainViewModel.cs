@@ -41,7 +41,6 @@ namespace UD5_Usuarios_SQLite.ViewModels
         [ObservableProperty]
         private ObservableCollection<Usuario> _usuarios =new();
 
-        #endregion
 
         public MainViewModel(IUsuarioServicio usuarioServicio)
         {
@@ -50,8 +49,6 @@ namespace UD5_Usuarios_SQLite.ViewModels
             // Cargar usuarios al iniciar
             _ = CargarUsuariosAsync();
         }
-
-        #region Comandos
 
         [RelayCommand]
         private async Task AnadirUsuarioAsync()
@@ -102,9 +99,6 @@ namespace UD5_Usuarios_SQLite.ViewModels
             Application.Current?.Quit();
         }
 
-        #endregion
-
-        #region Métodos Privados
 
         private async Task CargarUsuariosAsync()
         {
@@ -112,6 +106,5 @@ namespace UD5_Usuarios_SQLite.ViewModels
             Usuarios = new ObservableCollection<Usuario>(usuarios);
         }
 
-        #endregion
     }
 }
