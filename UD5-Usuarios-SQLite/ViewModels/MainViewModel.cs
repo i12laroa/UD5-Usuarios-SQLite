@@ -39,7 +39,7 @@ namespace UD5_Usuarios_SQLite.ViewModels
         public bool PuedeBorrar => UsuarioSeleccionado != null;
 
         [ObservableProperty]
-        private ObservableCollection<Usuario> _usuarios = new();
+        private ObservableCollection<Usuario> _usuarios =new();
 
         #endregion
 
