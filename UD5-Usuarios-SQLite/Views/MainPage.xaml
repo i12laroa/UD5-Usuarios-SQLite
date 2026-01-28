@@ -63,11 +63,22 @@
                     </HorizontalStackLayout>
                 </Border>
 
-                <!-- CollectionView en lugar de ListView -->
+                <!-- CollectionView para el listado -->
                 <CollectionView ItemsSource="{Binding Usuarios}"
                                 SelectionMode="Single"
                                 SelectedItem="{Binding UsuarioSeleccionado}"
                                 HeightRequest="200">
+
+                    <CollectionView.EmptyView>
+                        
+                            <Label Text="No hay usuarios registrados" 
+                             TextColor="Gray"
+                              HorizontalOptions="Center"
+                              VerticalOptions="Center"/>
+                     
+                    </CollectionView.EmptyView>
+
+
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="models:Usuario">
                             <Border Stroke="LightGray"
@@ -94,15 +105,7 @@
                             </Border>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
-                    <CollectionView.EmptyView>
-                        <VerticalStackLayout VerticalOptions="Center" 
-                                            HorizontalOptions="Center"
-                                            Padding="20">
-                            <Label Text="No hay usuarios registrados" 
-                                   TextColor="Gray"
-                                   HorizontalOptions="Center"/>
-                        </VerticalStackLayout>
-                    </CollectionView.EmptyView>
+                   
                 </CollectionView>
 
                 <!-- Botón Borrar Usuario con Border y GestureRecognizer -->
