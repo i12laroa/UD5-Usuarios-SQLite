@@ -17,7 +17,12 @@ namespace UD5_Usuarios_SQLite.Services
             // Ruta para la base de datos
             string dbPath = Path.Combine(FileSystem.AppDataDirectory, "usuarios.db");
             _conn = new SQLiteAsyncConnection(dbPath);
-            _conn.CreateTableAsync<Usuario>().Wait();
+          //  _conn.CreateTableAsync<Usuario>().Wait();
+        }
+
+        public async Task InitializeAsync()
+        {
+            await _conn.CreateTableAsync<Usuario>();
         }
 
         public async Task<List<Usuario>> ObtenerUsuariosAsync()

@@ -101,6 +101,7 @@ namespace UD5_Usuarios_SQLite.ViewModels
 
         private async Task CargarUsuariosAsync()
         {
+            await _usuarioServicio.InitializeAsync();
             var usuarios = await _usuarioServicio.ObtenerUsuariosAsync();
             Usuarios = new ObservableCollection<Usuario>(usuarios);
         }

@@ -11,5 +11,7 @@ namespace UD5_Usuarios_SQLite.Services
         Task<List<Usuario>> ObtenerUsuariosAsync();
         Task<int> GuardarUsuarioAsync(Usuario user);
         Task<int> BorrarUsuarioAsync(Usuario user);
+
+        Task InitializeAsync();
     }
 }
