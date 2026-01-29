@@ -10,6 +10,8 @@ namespace UD5_Usuarios_SQLite.Services
     /// </summary>
     public class UsuarioServicio : IUsuarioServicio
     {
+        //Readonly solo nos permite asignar la conexión en la declaración o en el constructor.
+        //fuera de esos dos casos no está permitido. Esto se hace para no asignar nuevas referencias (otro fichero de conexión).
         private readonly SQLiteAsyncConnection _conn;
 
         public UsuarioServicio()
