@@ -57,7 +57,7 @@ namespace UD5_Usuarios_SQLite.ViewModels
                 string.IsNullOrWhiteSpace(Ciudad) ||
                 !int.TryParse(Edad, out int edadInt))
             {
-                await Application.Current!.MainPage!.DisplayAlertAsync("Error!!", "Rellena los campos correctamente", "Ok");
+                await Shell.Current.CurrentPage.DisplayAlertAsync("Error!!", "Rellena los campos correctamente", "Ok");
                 return;
             }
 
@@ -96,6 +96,7 @@ namespace UD5_Usuarios_SQLite.ViewModels
         private void Salir()
         {
             Application.Current?.Quit();
+            
         }
 
 
