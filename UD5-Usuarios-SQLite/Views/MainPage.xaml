@@ -7,10 +7,10 @@
              x:DataType="viewmodels:MainViewModel">
 
     <ScrollView>
-        <VerticalStackLayout Padding="10" Spacing="10">
+        <Grid RowDefinitions="Auto,Auto,Auto" Padding="10">
 
             <!-- Cabecera con Switch -->
-            <HorizontalStackLayout Spacing="10">
+            <HorizontalStackLayout Spacing="10" Grid.Row="0">
                 <Label Text="Trabajando con SQLite. Activar: " 
                        VerticalOptions="Center"/>
                 <Switch IsToggled="{Binding BbddHabilitada}" />
@@ -19,7 +19,8 @@
             <!-- Panel de BBDD -->
             <VerticalStackLayout IsEnabled="{Binding BbddHabilitada}" 
                                  Spacing="10"
-                                 Padding="10">
+                                 Padding="10"
+                                 Grid.Row="1">
                 
                 <!-- Trigger para cambiar color de fondo -->
                 <VerticalStackLayout.Triggers>
@@ -145,7 +146,7 @@
             </VerticalStackLayout>
 
             <!-- Botón Salir con Border y GestureRecognizer -->
-            <Border Stroke="#C62828"
+            <Border Stroke="#C62828" Grid.Row="2"
                     StrokeThickness="2"
                     StrokeShape="RoundRectangle 10"
                     BackgroundColor="#C62828"
@@ -169,6 +170,6 @@
                
             </Border>
 
-        </VerticalStackLayout>
+        </Grid>
     </ScrollView>
 </ContentPage>

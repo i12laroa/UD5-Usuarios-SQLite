@@ -44,9 +44,8 @@ namespace UD5_Usuarios_SQLite.ViewModels
         public MainViewModel(IUsuarioServicio usuarioServicio)
         {
             _usuarioServicio = usuarioServicio;
-
             // Cargar usuarios al iniciar
-            _ = CargarUsuariosAsync();
+         //   _ = CargarUsuariosAsync();
         }
 
         [RelayCommand]
@@ -57,7 +56,7 @@ namespace UD5_Usuarios_SQLite.ViewModels
                 string.IsNullOrWhiteSpace(Ciudad) ||
                 !int.TryParse(Edad, out int edadInt))
             {
-                await Shell.Current.CurrentPage.DisplayAlertAsync("Error!!", "Rellena los campos correctamente", "Ok");
+                await Shell.Current.DisplayAlert("Error!!", "Rellena los campos correctamente", "Ok");
                 return;
             }
 
@@ -100,7 +99,7 @@ namespace UD5_Usuarios_SQLite.ViewModels
         }
 
 
-        private async Task CargarUsuariosAsync()
+        public async Task CargarUsuariosAsync()
         {
             await _usuarioServicio.InitializeAsync();
             var usuarios = await _usuarioServicio.ObtenerUsuariosAsync();

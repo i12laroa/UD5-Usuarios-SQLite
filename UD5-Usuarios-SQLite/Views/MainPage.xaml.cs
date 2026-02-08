@@ -1,4 +1,5 @@
-﻿using UD5_Usuarios_SQLite.ViewModels;
+﻿using AndroidX.Lifecycle;
+using UD5_Usuarios_SQLite.ViewModels;
 
 namespace UD5_Usuarios_SQLite.Views
 {
@@ -8,10 +9,19 @@ namespace UD5_Usuarios_SQLite.Views
     /// </summary>
     public partial class MainPage : ContentPage
     {
+        private MainViewModel ViewModel;
         public MainPage(MainViewModel viewModel)
         {
             InitializeComponent();
             BindingContext = viewModel;
+            ViewModel = viewModel;
         }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            await ViewModel.CargarUsuariosAsync();
+        }
+
     }
 }
